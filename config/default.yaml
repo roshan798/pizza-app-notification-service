@@ -1,0 +1,32 @@
+app:
+    name: websocket-service
+    version: 1.0.0
+    description: Service for managing orders and billing
+NODE_ENV: development
+client:
+    urls: http://localhost:5173,http://localhost:4173,http://localhost:3000,
+server:
+    port: 8084
+    host: localhost
+
+database:
+    url: mongodb://root:root@localhost:27017/order?authSource=admin
+    name: order
+    user: root
+    password: root
+auth:
+    jwksUri: http://localhost:8081/.well-known/jwks.json
+kafka:
+    brokers: localhost:9092
+    topics:
+        product: product
+        topping: topping
+        order: order
+log:
+    level: 'info'
+    application_log_filename: 'application-%DATE%.log'
+    error_log_filename: 'error-%DATE%.log'
+    date_pattern: 'YYYY-MM-DD'
+    zipped_archive: true
+    max_size: '20m'
+    max_files: '14d'
