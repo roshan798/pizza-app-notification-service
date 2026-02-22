@@ -1,13 +1,12 @@
 import config from 'config';
 
 export const Config = {
-    APP_NAME: config.get<string>('app.name') || 'websocket-service',
+    APP_NAME: config.get<string>('app.name') || 'notification-service',
     PORT: config.get<number>('server.port'),
     HOST: config.get<string>('server.host'),
     URL: `http://${config.get<string>('server.host')}:${config.get<number>('server.port')}`,
     NODE_ENV: config.get<string>('NODE_ENV'),
     CLIENT_URLS: config.get<string>('client.urls').split(','),
-    AUTH_JWKS_URI: config.get<string>('auth.jwksUri'),
     BROKERS: config.get<string>('kafka.brokers').split(','),
     LOG: {
         Level: config.get<string>('log.level'),
@@ -17,5 +16,11 @@ export const Config = {
         Zipped_Archive: config.get<boolean>('log.zipped_archive'),
         Max_Size: config.get<string>('log.max_size'),
         Max_Files: config.get<string>('log.max_files')
-    }
+    },
+    EMAIL_HOST: config.get<string>('mail.host'),
+    EMAIL_PORT: config.get<number>('mail.port'),
+    EMAIL_USER: config.get<string>('mail.auth.user'),
+    EMAIL_PASS: config.get<string>('mail.auth.password'),
+    EMAIL_SECURE: config.get<boolean>('mail.secure'),
+    EMAIL_FROM: config.get<string>('mail.from'),
 };

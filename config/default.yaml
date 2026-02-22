@@ -1,12 +1,12 @@
 app:
-    name: websocket-service
+    name: notification-service
     version: 1.0.0
     description: Service for managing orders and billing
 NODE_ENV: development
 client:
     urls: http://localhost:5173,http://localhost:4173,http://localhost:3000,
 server:
-    port: 8084
+    port: 8085
     host: localhost
 
 database:
@@ -30,3 +30,11 @@ log:
     zipped_archive: true
     max_size: '20m'
     max_files: '14d'
+mail:
+    host: smtp.example.com
+    port: 587
+    secure: false
+    auth:
+        user:
+        password:
+

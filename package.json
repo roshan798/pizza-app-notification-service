@@ -1,7 +1,7 @@
 {
-	"name": "websocket-service",
+	"name": "notification-service",
 	"version": "1.0.0",
-	"description": "WebSocket service for the application",
+	"description": "notification service for the application",
 	"main": "dist/server.js",
 	"scripts": {
 		"test": "jest --watchAll=false --runInBand",
@@ -27,17 +27,18 @@
 		"@types/express": "^5.0.6",
 		"@types/jest": "^29.5.14",
 		"@types/node": "^22.19.3",
+		"@types/nodemailer": "^7.0.11",
 		"@types/ws": "^8.5.11",
-		"eslint": "^4.1.1",
+		"eslint": "^4.0.0",
 		"husky": "^9.1.7",
-		"jest": "^29.7.0",
+		"jest": "^25.0.0",
 		"lint-staged": "^16.1.0",
 		"nodemon": "^3.1.10",
 		"prettier": "3.5.3",
-		"ts-jest": "^29.3.4",
+		"ts-jest": "^27.0.3",
 		"ts-node": "^10.9.2",
 		"typescript": "^5.8.3",
-		"typescript-eslint": "^8.14.0"
+		"typescript-eslint": "^7.3.1"
 	},
 	"lint-staged": {
 		"*.ts": [
@@ -56,6 +57,7 @@
 		"http-errors": "^2.0.0",
 		"js-yaml": "^4.1.0",
 		"kafkajs": "^2.2.4",
+		"nodemailer": "^8.0.1",
 		"socket.io": "^4.8.3",
 		"supertest": "^7.1.1",
 		"winston": "^3.19.0",
