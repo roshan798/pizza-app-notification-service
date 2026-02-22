@@ -47,6 +47,7 @@ export interface IItem {
 export interface Order {
     id: string;
     customerId: string;
+    customerEmail?: string;
     address: string;
     phone: string;
     paymentMode: PaymentMode;
