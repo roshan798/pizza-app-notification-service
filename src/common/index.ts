@@ -7,7 +7,7 @@ export const Config = {
     URL: `http://${config.get<string>('server.host')}:${config.get<number>('server.port')}`,
     NODE_ENV: config.get<string>('NODE_ENV'),
     CLIENT_URLS: config.get<string>('client.urls').split(','),
-    BROKERS: config.get<string>('kafka.brokers').split(','),
+    BROKERS: config.get<string[]>('kafka.brokers'),
     LOG: {
         Level: config.get<string>('log.level'),
         Application_Log_Filename: config.get<string>('log.application_log_filename'),
