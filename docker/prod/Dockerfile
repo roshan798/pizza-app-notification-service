@@ -13,7 +13,7 @@ WORKDIR /home/node/app
 RUN --mount=type=bind,source=package.json,target=package.json \
     --mount=type=bind,source=package-lock.json,target=package-lock.json \
     --mount=type=cache,target=/root/.npm \
-    npm ci
+    npm ci --legacy-peer-deps
 
 # Copy the rest of the application code to the working directory
 COPY . .
@@ -39,7 +39,7 @@ ENV NODE_ENV=production
 RUN --mount=type=bind,source=package.json,target=package.json \
     --mount=type=bind,source=package-lock.json,target=package-lock.json \
     --mount=type=cache,target=/root/.npm \
-    npm ci --omit=dev --ignore-scripts
+    npm ci --omit=dev --ignore-scripts --legacy-peer-deps
 
 # Copy the built application from the builder stage to the final image
 # --chown=node:node is used to set the ownership of the copied files to the node user
