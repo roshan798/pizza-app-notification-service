@@ -1,9 +1,10 @@
-import { Consumer, Kafka } from 'kafkajs';
+import { Consumer, Kafka, KafkaConfig } from 'kafkajs';
 import { MessageBroker } from '../common/MessageBroker';
 import { Topics } from './eventUtils';
 import { Logger } from 'winston';
 import { createNotificationTransport, getLogger } from '../common/factory';
 import { MessageHandler } from './messageHandler';
+import { Config } from '../common';
 
 export class KafkaMessageBroker implements MessageBroker {
 	private consumer: Consumer;
@@ -11,10 +12,30 @@ export class KafkaMessageBroker implements MessageBroker {
 	private logger: Logger;
 	private messageHandler: MessageHandler;
 	constructor(clientId: string, brokers: string[]) {
-		this.kafka = new Kafka({
+		let kafkaConfig: KafkaConfig = {
 			clientId: clientId,
 			brokers: brokers,
-		});
+		};
+		if (Config.NODE_ENV === 'production') {
+			kafkaConfig = {
+				...kafkaConfig,
+				ssl: {
+					rejectUnauthorized: false,
+				},
+				sasl: {
+					mechanism: 'plain',
+					username: Config.KAFKA_USERNAME,
+					password: Config.KAFKA_PASSWORD,
+				},
+				connectionTimeout: 45000,
+				requestTimeout: 45000,
+				retry: {
+					initialRetryTime: 300,
+					retries: 10,
+				},
+			};
+		}
+		this.kafka = new Kafka(kafkaConfig);
 		this.consumer = this.kafka.consumer({ groupId: `${clientId}-group` });
 		this.messageHandler = new MessageHandler(createNotificationTransport("email"));
 		this.logger = getLogger();
